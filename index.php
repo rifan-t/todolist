@@ -26,7 +26,12 @@ if(isset($_GET['delete_id'])){
     mysqli_query($conn, "DELETE FROM tasks WHERE id = '$id'");
 }
 
-$tasks = mysqli_query($conn, "SELECT * FROM tasks ORDER BY id desc")
+$result = mysqli_query($conn, "SELECT * FROM tasks ORDER BY id desc");
+$tasks = [];
+while ($row = $result->fetch_assoc()) {
+    $tasks[] = $row;
+}
+
 ?>
 
 <!DOCTYPE html>
